@@ -8,6 +8,10 @@
     margin-top: -18rem;
     border-radius: 3%;
 }
+.fillUp h2{
+    margin-left: 2rem;
+    margin-top: 2rem;
+}
 
 #container{
     display: flex;
@@ -50,7 +54,6 @@
 .user svg{
     height: 50px;
     width: 100px;
-    margin-left: 40%;
-    margin-top: 2rem;
+    
 
 }
