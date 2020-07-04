@@ -1,7 +1,7 @@
 .Content{
-    width: 50%;
+    width: 80%;
     height: 400px;
-    background:linear-gradient(to right, #00dbdef0, #fc00ffe6);
+    background:linear-gradient(to right, #745cf9, #4301a6);
     display: flex;
     justify-content: center;
     align-items: center;

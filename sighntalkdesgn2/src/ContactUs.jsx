@@ -4,7 +4,7 @@ import contactLogo from './images/undraw_contact_us_15o2.svg'
 function ContactUs() {
   return (
     <>
-     <Common image={contactLogo} />
+     <Common heading={"CONTACT US HERE"} image={contactLogo} />
     </>
   );
 }

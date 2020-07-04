@@ -14,7 +14,7 @@ const Form = () => {
             <div className="Wrapper">
                 <Avatar />
                 <InputFields />
-                <Footer />
+               
             </div>
         </form>
     )

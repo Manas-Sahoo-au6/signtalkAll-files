@@ -4,7 +4,7 @@ import aboutLogo from './images/undraw_about_me_wa29.svg'
 function AboutUs() {
     return (
         <>
-        <Common image={aboutLogo} />
+        <Common heading={"ABOUT US WHAT WE OFFER"} image={aboutLogo} />
     </>
     )
 }

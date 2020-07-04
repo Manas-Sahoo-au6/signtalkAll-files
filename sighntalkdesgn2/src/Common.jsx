@@ -1,7 +1,8 @@
 import React from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./Common.css";
-import image1 from "./images/undraw_hire_te5y.svg";
+import Category from './components/Category/Category'
+
 import Login from "./components/Login/Login";
 function Common(props) {
   return (
@@ -11,7 +12,7 @@ function Common(props) {
           <div id="row" className="row">
             <div className="col-md-6">
               <div className="para">
-                <h1>CONNECT ANYTIME & ANYWHERE</h1>
+                <h1>{props.heading}</h1>
                 <p>Find Interpreter To Bridge Your Communication Needs</p>
               </div>
               <button
@@ -19,18 +20,22 @@ function Common(props) {
                 type="button"
                 class="btn "
                 data-toggle="modal"
-                data-target="#exampleModal"
+                data-target=".bd-example-modal-lg"
               >
                 Get Started
               </button>
-              <Login />
+              <Category />
             </div>
             <div id="loghome" className="col-md-6 text-center">
               <img src={props.image} alt="logo" />
             </div>
           </div>
         </div>
-        <img src="https://sociallyhandled.com/wp-content/uploads/2018/10/waves-shape.png" className="bottom-img" alt="img"/>
+        <img
+          src="https://i0.wp.com/crftshodigital.com/wp-content/uploads/revslider/info-graphic/bottom-wave.png?fit=1920%2C673&ssl=1"
+          className="bottom-img"
+          alt="img"
+        />
       </section>
     </>
   );

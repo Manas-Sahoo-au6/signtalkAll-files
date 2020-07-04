@@ -1,12 +1,9 @@
 import React from "react";
-import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import Box from "../Box";
-
-function Login() {
+import "../Box.css";
+import CategoryPop from "./CategoryPop";
+function Category() {
   return (
     <>
-      <div id="Login" className="button"></div>
-
       <div
         class="modal fade bd-example-modal-lg"
         tabindex="-1"
@@ -15,7 +12,7 @@ function Login() {
         aria-hidden="true"
       >
         <div class="modal-dialog modal-lg">
-          <div id="modal-content"  class="modal-content">
+          <div id="modal-content" class="modal-content">
             <div class="modal-header">
               <button
                 type="button"
@@ -27,7 +24,9 @@ function Login() {
               </button>
             </div>
             <div className="App">
-              <Box />
+            
+            <CategoryPop /> 
+                
             </div>
           </div>
         </div>
@@ -36,4 +35,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Category;
