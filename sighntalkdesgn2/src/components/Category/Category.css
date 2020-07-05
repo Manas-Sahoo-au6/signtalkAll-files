@@ -1,26 +1,27 @@
-.fillUp{
+.fillUp {
     width: 100%;
     height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(to right,  #9586ec,#4301a6);
+    background-image: linear-gradient(to right, #9586ec, #4301a6);
     margin-top: -18rem;
     border-radius: 3%;
 }
-.fillUp h2{
+
+.fillUp h2 {
     margin-left: 2rem;
     margin-top: 2rem;
 }
 
-#container{
+#container {
     display: flex;
     align-items: center;
     flex-direction: row;
-    
+
 }
-  
-#interpreter{
+
+#interpreter {
     width: 40%;
     height: 399px;
     background-color: white;
@@ -29,21 +30,23 @@
     /* margin-bottom: -1.8rem; */
     color: #4301a6;
     font-size: x-large;
-    
-    
+
+
 }
-#interpreter svg{
+
+#interpreter svg {
     height: 50px;
     width: 100px;
     margin-left: 100px;
     margin-top: 2rem;
-    
+
 }
-#interpreter svg{
+
+#interpreter svg {
     width: 100px;
 }
 
-#user{
+#user {
     width: 60%;
     height: 399px;
     /* flex-direction: column;
@@ -51,9 +54,35 @@
 }
 
 
-.user svg{
+.user svg {
     height: 50px;
     width: 100px;
+
+
+}
+
+
+
+@media all and (max-width:768px)and (min-width:640px) {
+    .user svg {
+        height: 50px;
+        width: auto;
     
+    
+    }
+    #interpreter svg {
+        width: auto;
+        margin-left: 4rem;
+    }
+    .fillUp h2 {
+       font-size: medium;
+       font-weight: 600;
+       margin-left: 2rem;
+    }
+    .fillUp {
+       
+        margin-top: -39rem;
+        
+    }
 
 }

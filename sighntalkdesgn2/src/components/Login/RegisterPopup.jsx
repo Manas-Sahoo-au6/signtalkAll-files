@@ -1,22 +1,23 @@
-import React from "react";
-import "../Box.css";
-import CategoryPop from "./CategoryPop";
-function Category() {
-  return (
-    <>
-      <div
-        className="modal fade bd-example-modal-lg"
+
+import React from 'react'
+import Register from './Register'
+
+function RegisterPopup() {
+    return (
+        <>
+        <div
+        class="modal fade bd-example-modal-lg"
         tabindex="-1"
         role="dialog"
         aria-labelledby="myLargeModalLabel"
         aria-hidden="true"
       >
-        <div className="modal-dialog modal-lg">
-          <div id="modal-content" className="modal-content">
-            <div className="modal-header">
+        <div class="modal-dialog modal-lg">
+          <div id="modal-content" class="modal-content">
+            <div class="modal-header">
               <button
                 type="button"
-                className="close"
+                class="close"
                 data-dismiss="modal"
                 aria-label="Close"
               >
@@ -25,14 +26,15 @@ function Category() {
             </div>
             <div className="App">
             
-            <CategoryPop /> 
+            <Register /> 
                 
             </div>
           </div>
         </div>
       </div>
-    </>
-  );
+    </> 
+    )
 }
 
-export default Category;
+export default RegisterPopup
+

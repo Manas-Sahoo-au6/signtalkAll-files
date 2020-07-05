@@ -5,8 +5,9 @@ import Home from './Home'
 import Services from './Services'
 import ContactUs from './ContactUs'
 import AboutUs from './AboutUs'
-
+import Dashboard from './components/Dashboard/Dashboard'
 import NavBar from './components/NavBar'
+import Pie from './components/Chart/Pie'
 function App() {
   return (
     <>
@@ -14,8 +15,10 @@ function App() {
          <Switch>
            <Route  exact path="/" component={Home}/>
            <Route exact path="/aboutus" component={AboutUs}/>
-           <Route exact path="/services" component={Services}/>
+           <Route exact path="/profile" component={Pie}/>
            <Route exact path="/contactus" component={ContactUs}/>
+           <Route exact path="/admin" component={Dashboard}/>
+          
          </Switch>
     </ >
   )

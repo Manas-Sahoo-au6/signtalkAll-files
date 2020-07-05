@@ -36,6 +36,7 @@
 #nav-link {
   color: white;
   font-weight: 600;
+  float: right;
 }
 
 .navbar-toggler {
@@ -85,3 +86,16 @@ button.btn {
   height: 80vh;
   width: 70%;
 }
+
+@media all and (max-width:800px){
+  #nav-bar {
+    position: relative;
+    position: absolute;
+    right: 0;
+    top: 0;
+  
+  }
+}
+
+
+

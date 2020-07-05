@@ -49,6 +49,16 @@ function NavBar() {
                       Home
                     </NavLink>
                   </li>
+                  <li className="nav-item">
+                    <NavLink
+                      id="nav-link"
+                      className="nav-link active"
+                      aria-current="page"
+                      to="/admin"
+                    >
+                      Dashboard
+                    </NavLink>
+                  </li>
 
                   <li className="nav-item">
                     <NavLink
@@ -65,9 +75,9 @@ function NavBar() {
                       id="nav-link"
                       className="nav-link active"
                       aria-current="page"
-                      to="/services"
+                      to="/profile"
                     >
-                      Services
+                      Profile
                     </NavLink>
                   </li>
                   <li className="nav-item">

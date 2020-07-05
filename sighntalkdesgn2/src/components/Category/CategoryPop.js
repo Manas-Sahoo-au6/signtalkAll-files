@@ -2,6 +2,7 @@ import React from "react";
 import "./Category.css";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import WorkIcon from "@material-ui/icons/Work";
+import RegisterPopup from  '../Login/RegisterPopup'
 function CategoryPop() {
   return (
     <>
@@ -25,6 +26,7 @@ function CategoryPop() {
               }}
             >
               <div
+                className="Work"
                 style={{
                   marginLeft: "-6.5rem",
                   height: "50px",
@@ -51,6 +53,11 @@ function CategoryPop() {
             <div>
               <h2>I want to find an InterPreter</h2>
               <button
+                id="btn"
+                type="button"
+                class="btn "
+                data-toggle="modal"
+                data-target=".bd-example-modal-lg"
                 style={{
                   backgroundColor: "transparent",
                   border: "none",
@@ -62,6 +69,7 @@ function CategoryPop() {
                 }}
               >
                 <div
+                  className="Find"
                   style={{
                     marginLeft: "5.8rem",
                     height: "50px",
@@ -81,6 +89,7 @@ function CategoryPop() {
                   </label>
                 </div>
               </button>
+              <RegisterPopup />
             </div>
           </div>
         </div>
