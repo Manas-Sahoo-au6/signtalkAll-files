@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import "./Register.css";
 import Axios from "axios";
-
+import Modal from "react-modal";
+import Login from "./Login";
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
@@ -22,17 +23,22 @@ const formValid = ({ formErrors, ...rest }) => {
   return valid;
 };
 
-class LoginUser extends Component {
+class RegisterUser extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      firstname: null,
+      lastname: null,
       email: null,
       password: null,
-      formSubmit: "",
+      modelOpen: false,
       formErrors: {
+        firstname: "",
+        lastname: "",
         email: "",
         password: "",
+        formSubmit: "",
       },
     };
   }
@@ -43,15 +49,19 @@ class LoginUser extends Component {
     if (formValid(this.state)) {
       console.log(`
         --SUBMITTING--
-        
+        First Name: ${this.state.firstname}
+        Last Name: ${this.state.lastname}
         Email: ${this.state.email}
         Password: ${this.state.password}
       `);
       let data = Axios({
         method: "post",
-        url: "https://whispering-lake-75400.herokuapp.com/login/user",
+        url: "https://whispering-lake-75400.herokuapp.com/Register/user",
+
         data: {
           email: this.state.email,
+          firstname: this.state.firstname,
+          lastname: this.state.lastname,
           password: this.state.password,
         },
       });
@@ -62,7 +72,7 @@ class LoginUser extends Component {
             setTimeout(() => {
               // alert(mssg);
               alert(`Registered   sucessfully: ${res.data.message}`);
-              console.log(res.data.message);
+              console.log(res);
             }, 500);
           }
         })
@@ -74,7 +84,7 @@ class LoginUser extends Component {
           console.log(err);
         });
     } else {
-      alert(`FORM INVALID -\n ${this.state.formErrors.email} `);
+      alert(`FORM INVALID -\n ${this.state.formErrors.firstname} `);
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }
   };
@@ -85,6 +95,14 @@ class LoginUser extends Component {
     let formErrors = { ...this.state.formErrors };
 
     switch (name) {
+      case "firstname":
+        formErrors.firstname =
+          value.length < 3 ? "minimum 3 characaters required" : "";
+        break;
+      case "lastname":
+        formErrors.lastname =
+          value.length < 3 ? "minimum 3 characaters required" : "";
+        break;
       case "email":
         formErrors.email = emailRegex.test(value)
           ? ""
@@ -105,10 +123,39 @@ class LoginUser extends Component {
     const { formErrors } = this.state;
 
     return (
+      <>
       <div className="some">
         <div className="form-wrapper">
-          <h1>Create Account InterPreter</h1>
-          <form onSubmit={this.handleSubmit} noValidate>
+          <h1>Create Account For User </h1>
+          <form  noValidate>
+            <div className="firstName">
+              <label htmlFor="firstName">First Name</label>
+              <input
+                className={formErrors.firstname.length > 0 ? "error" : null}
+                placeholder="First Name"
+                type="text"
+                name="firstname"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.firstname.length > 0 && (
+                <span className="errorMessage">{formErrors.firstname}</span>
+              )}
+            </div>
+            <div className="lastName">
+              <label htmlFor="lastName">Last Name</label>
+              <input
+                className={formErrors.lastname.length > 0 ? "error" : null}
+                placeholder="Last Name"
+                type="text"
+                name="lastname"
+                noValidate
+                onChange={this.handleChange}
+              />
+              {formErrors.lastname.length > 0 && (
+                <span className="errorMessage">{formErrors.lastname}</span>
+              )}
+            </div>
             <div className="email">
               <label htmlFor="email">Email</label>
               <input
@@ -138,16 +185,31 @@ class LoginUser extends Component {
               )}
             </div>
             <div className="createAccount">
-              <button type="submit">Login</button>
-              <button style={{ backgroundColor: "purple" }}>
-                Not Have an Account?
+              <button onClick={this.handleSubmit}type="submit">Create Account</button>
+              <button style={{ backgroundColor: "purple" }}  onClick={() => {
+                this.setState({modelOpen:true});
+              }}>
+                Already Have an Account?
               </button>
             </div>
           </form>
         </div>
+  
+   
       </div>
+           <Modal
+           className="some "
+           isOpen={this.state.modelOpen}
+           onRequestClose={() => {
+             this.setState({ modelOpen: false });
+           }}
+         >
+           <Login />
+         </Modal>
+
+         </>
     );
   }
 }
 
-export default LoginUser;
+export default RegisterUser;

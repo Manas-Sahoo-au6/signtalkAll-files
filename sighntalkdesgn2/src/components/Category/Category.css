@@ -1,12 +1,13 @@
 .fillUp {
-    width: 100%;
+    width: 800px;
     height: 400px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-image: linear-gradient(to right, #9586ec, #4301a6);
-    margin-top: -18rem;
+    
     border-radius: 3%;
+  
 }
 
 .fillUp h2 {
@@ -85,4 +86,9 @@
         
     }
 
+}
+
+.Find a{
+     text-decoration: none;
+     color: white;
 }

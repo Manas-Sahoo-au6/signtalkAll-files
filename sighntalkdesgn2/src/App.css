@@ -27,7 +27,7 @@
 }
 
 #nav-bar {
-  position: sticky;
+  position: fixed;
   top: 0;
   z-index: 10;
 
@@ -95,6 +95,9 @@ button.btn {
     top: 0;
   
   }
+}
+#container{
+  margin-top: 3rem;
 }
 
 

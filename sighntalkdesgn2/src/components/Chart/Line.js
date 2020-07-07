@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Doughnut } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import './Pie.css'
 
 const data = {
@@ -24,17 +24,17 @@ const data = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [65, 59, 80, 15, 56]
+      data: [65, 59, 80, 81, 56]
     }
   ]
 };
 
-export default class Pie extends Component {
+export default class LineDemo extends Component {
   render() {
     return (
       <div id="main">
        <div> </div>
-       <div id="pie"> <Doughnut ref="chart" data={data} /></div>
+       <div id="pie"> <Line ref="chart" data={data} /></div>
       </div>
     );
   }

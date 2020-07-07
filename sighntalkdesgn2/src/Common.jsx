@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./Common.css";
-import Category from './components/Category/Category'
+import CategoryPop from "./components/Category/CategoryPop";
 
+import Modal from "react-modal";
 import Login from "./components/Login/Login";
+import "./components/Category/Category.css";
+import Register from "./components/Login/Register";
 function Common(props) {
+  let [modelIsOpen, setModelIsOpen] = useState(false);
+  
   return (
     <>
       <section id="banner">
@@ -13,18 +18,30 @@ function Common(props) {
             <div className="col-md-6">
               <div className="para">
                 <h1>{props.heading}</h1>
-                <p>Find Interpreter To Bridge Your Communication Needs</p>
+                <p style={{color:"white"}}>Find Interpreter To Bridge Your Communication Needs</p>
               </div>
               <button
                 id="btn"
                 type="button"
-                class="btn "
-                data-toggle="modal"
-                data-target=".bd-example-modal-lg"
+                className="btn "
+                onClick={() => {
+                  setModelIsOpen(true);
+                }}
               >
                 Get Started
               </button>
-              <Category />
+              <Modal
+                 className="Modal"
+                isOpen={modelIsOpen}
+                onRequestClose={() => {
+                  setModelIsOpen(false);
+                }}
+              >
+                    <CategoryPop  />
+
+
+              </Modal>
+              {/* <Category /> */}
             </div>
             <div id="loghome" className="col-md-6 text-center">
               <img src={props.image} alt="logo" />
@@ -37,6 +54,8 @@ function Common(props) {
           alt="img"
         />
       </section>
+    
+
     </>
   );
 }

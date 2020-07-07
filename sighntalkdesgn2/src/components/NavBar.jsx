@@ -90,6 +90,7 @@ function NavBar() {
                       Contact Us
                     </NavLink>
                   </li>
+                  
                 </ul>
               </div>
             </div>

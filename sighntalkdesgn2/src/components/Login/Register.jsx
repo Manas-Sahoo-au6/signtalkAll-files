@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./Register.css";
-
+import Axios from "axios";
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
@@ -26,15 +26,17 @@ class Register extends Component {
     super(props);
 
     this.state = {
-      firstName: null,
-      lastName: null,
+      firstname: null,
+      lastname: null,
       email: null,
       password: null,
+      formSubmit:"",
       formErrors: {
-        firstName: "",
-        lastName: "",
+        firstname: "",
+        lastname: "",
         email: "",
-        password: ""
+        password: "",
+       
       }
     };
   }
@@ -45,12 +47,52 @@ class Register extends Component {
     if (formValid(this.state)) {
       console.log(`
         --SUBMITTING--
-        First Name: ${this.state.firstName}
-        Last Name: ${this.state.lastName}
+        First Name: ${this.state.firstname}
+        Last Name: ${this.state.lastname}
         Email: ${this.state.email}
         Password: ${this.state.password}
       `);
+      let data = Axios({
+        method: "post",
+        url: "https://whispering-lake-75400.herokuapp.com/Register/interpreter",
+    
+      
+        data: {
+          email: this.state.email,
+          firstname: this.state.firstname,
+          lastname: this.state.lastname,
+          password: this.state.password,
+          
+        },
+      });
+  
+      data
+        .then((res) => {
+          
+          if (res) {
+            setTimeout(() => {
+              
+              // alert(mssg);
+              alert(`Registered   sucessfully: ${res.data.message}`)
+              console.log(res.data.message)
+  
+            }, 500);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          alert("Already Registered")
+          // alert(mssg);
+          
+          console.log(err)
+        });
+
+         
+
+
     } else {
+      
+      alert(`FORM INVALID -\n ${this.state.formErrors.firstname} `)
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }
   };
@@ -61,12 +103,12 @@ class Register extends Component {
     let formErrors = { ...this.state.formErrors };
 
     switch (name) {
-      case "firstName":
-        formErrors.firstName =
+      case "firstname":
+        formErrors.firstname =
           value.length < 3 ? "minimum 3 characaters required" : "";
         break;
-      case "lastName":
-        formErrors.lastName =
+      case "lastname":
+        formErrors.lastname =
           value.length < 3 ? "minimum 3 characaters required" : "";
         break;
       case "email":
@@ -89,36 +131,36 @@ class Register extends Component {
     const { formErrors } = this.state;
 
     return (
-      <div className="wrapper">
+      <div className="some">
         <div className="form-wrapper">
-          <h1>Create Account</h1>
+          <h1>Create Account InterPreter</h1>
           <form onSubmit={this.handleSubmit} noValidate>
             <div className="firstName">
               <label htmlFor="firstName">First Name</label>
               <input
-                className={formErrors.firstName.length > 0 ? "error" : null}
+                className={formErrors.firstname.length > 0 ? "error" : null}
                 placeholder="First Name"
                 type="text"
-                name="firstName"
+                name="firstname"
                 noValidate
                 onChange={this.handleChange}
               />
-              {formErrors.firstName.length > 0 && (
-                <span className="errorMessage">{formErrors.firstName}</span>
+              {formErrors.firstname.length > 0 && (
+                <span className="errorMessage">{formErrors.firstname}</span>
               )}
             </div>
             <div className="lastName">
               <label htmlFor="lastName">Last Name</label>
               <input
-                className={formErrors.lastName.length > 0 ? "error" : null}
+                className={formErrors.lastname.length > 0 ? "error" : null}
                 placeholder="Last Name"
                 type="text"
-                name="lastName"
+                name="lastname"
                 noValidate
                 onChange={this.handleChange}
               />
-              {formErrors.lastName.length > 0 && (
-                <span className="errorMessage">{formErrors.lastName}</span>
+              {formErrors.lastname.length > 0 && (
+                <span className="errorMessage">{formErrors.lastname}</span>
               )}
             </div>
             <div className="email">
@@ -151,7 +193,7 @@ class Register extends Component {
             </div>
             <div className="createAccount">
               <button type="submit">Create Account</button>
-              <small>Already Have an Account?</small>
+               <button style={{backgroundColor:"purple"}}>Already Have an Account?</button>
             </div>
           </form>
         </div>
