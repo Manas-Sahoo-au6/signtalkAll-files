@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import "./Register.css";
+import "./Login.css";
 import Axios from "axios";
-
+import {NavLink}  from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
@@ -49,7 +50,7 @@ class LoginUser extends Component {
       `);
       let data = Axios({
         method: "post",
-        url: "https://whispering-lake-75400.herokuapp.com/login/user",
+        url: "https://whispering-lake-75400.herokuapp.com/Login/interpreter",
         data: {
           email: this.state.email,
           password: this.state.password,
@@ -61,8 +62,16 @@ class LoginUser extends Component {
           if (res) {
             setTimeout(() => {
               // alert(mssg);
-              alert(`Registered   sucessfully: ${res.data.message}`);
+              
               console.log(res.data.message);
+              if(localStorage.getItem('token') == null) {
+                localStorage.setItem('token',res.data.token)
+              alert(`Registered   sucessfully: ${res.data.message}`)
+            }
+          
+              else {localStorage.removeItem('token') 
+              alert('user already logged in try to logged in again')}
+              console.log(localStorage.getItem('token'))
             }, 500);
           }
         })
@@ -105,10 +114,11 @@ class LoginUser extends Component {
     const { formErrors } = this.state;
 
     return (
-      <div className="some">
+         <>
+              {localStorage.getItem('token')=== null ? ( <div className="some">
         <div className="form-wrapper">
-          <h1>Create Account InterPreter</h1>
-          <form onSubmit={this.handleSubmit} noValidate>
+          <h1>Login as InterPreter</h1>
+          <form  noValidate>
             <div className="email">
               <label htmlFor="email">Email</label>
               <input
@@ -138,14 +148,15 @@ class LoginUser extends Component {
               )}
             </div>
             <div className="createAccount">
-              <button type="submit">Login</button>
-              <button style={{ backgroundColor: "purple" }}>
-                Not Have an Account?
+              <button onClick={this.handleSubmit} type="submit">Login</button>
+              <button style={{backgroundColor:"white"}}>
+          <NavLink to="/regInt" style={{textDecoration:"none"}}> Not Have an Account?</NavLink>     
               </button>
             </div>
           </form>
         </div>
-      </div>
+      </div>): (<Redirect to="/CommProf"></Redirect>)}
+         </>
     );
   }
 }

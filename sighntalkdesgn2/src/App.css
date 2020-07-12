@@ -32,6 +32,18 @@
   z-index: 10;
 
 }
+#nav-bar button{
+  background-color: #4301a6;
+  color: white;
+  border: transparent;
+
+}
+#nav-bar button:hover{
+  background-color: white;
+  color: blue;
+
+
+}
 
 #nav-link {
   color: white;

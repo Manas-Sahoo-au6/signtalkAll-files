@@ -3,6 +3,7 @@ import "./Register.css";
 import Axios from "axios";
 import Modal from "react-modal";
 import Login from "./Login";
+import {NavLink} from 'react-router-dom'
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
@@ -126,7 +127,7 @@ class RegisterUser extends Component {
       <>
       <div className="some">
         <div className="form-wrapper">
-          <h1>Create Account For User </h1>
+        <h4>Create User Account </h4>
           <form  noValidate>
             <div className="firstName">
               <label htmlFor="firstName">First Name</label>
@@ -186,10 +187,8 @@ class RegisterUser extends Component {
             </div>
             <div className="createAccount">
               <button onClick={this.handleSubmit}type="submit">Create Account</button>
-              <button style={{ backgroundColor: "purple" }}  onClick={() => {
-                this.setState({modelOpen:true});
-              }}>
-                Already Have an Account?
+              <button style={{backgroundColor:"white"}} >
+              <NavLink to="/loginUser" style={{textDecoration:"none"}}> Already Have an Account?</NavLink>  
               </button>
             </div>
           </form>

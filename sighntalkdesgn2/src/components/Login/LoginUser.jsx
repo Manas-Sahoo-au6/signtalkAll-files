@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import "./Register.css";
+import "./Login.css";
 import Axios from "axios";
-import {NavLink, Redirect} from 'react-router-dom'
+import {NavLink}  from 'react-router-dom'
+
 const emailRegex = RegExp(
   /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 );
@@ -10,108 +11,83 @@ const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
 
   // validate form errors being empty
-  Object.values(formErrors).forEach(val => {
+  Object.values(formErrors).forEach((val) => {
     val.length > 0 && (valid = false);
   });
 
   // validate the form was filled out
-  Object.values(rest).forEach(val => {
+  Object.values(rest).forEach((val) => {
     val === null && (valid = false);
   });
 
   return valid;
 };
 
-class Register extends Component {
+class LoginUser extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      firstname: null,
-      lastname: null,
       email: null,
       password: null,
-      formSubmit:"",
+      formSubmit: "",
       formErrors: {
-        firstname: "",
-        lastname: "",
         email: "",
         password: "",
-       
-      }
+      },
     };
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
 
     if (formValid(this.state)) {
       console.log(`
         --SUBMITTING--
-        First Name: ${this.state.firstname}
-        Last Name: ${this.state.lastname}
+        
         Email: ${this.state.email}
         Password: ${this.state.password}
       `);
       let data = Axios({
         method: "post",
-        url: "https://whispering-lake-75400.herokuapp.com/Register/interpreter",
-    
-      
+        url: "https://whispering-lake-75400.herokuapp.com/login/user",
         data: {
           email: this.state.email,
-          firstname: this.state.firstname,
-          lastname: this.state.lastname,
           password: this.state.password,
-          
         },
       });
-  
+
       data
         .then((res) => {
-          
           if (res) {
             setTimeout(() => {
-              
               // alert(mssg);
-              alert(`Registered   sucessfully: ${res.data.message}`)
-              console.log(res.data.message)
-  
+              alert(`Registered   sucessfully: ${res.data.message}`);
+              console.log(res.data.message);
+              localStorage.setItem('token',res.data.token)
+              console.log(localStorage.getItem('token'))
             }, 500);
           }
         })
         .catch((err) => {
           console.log(err);
-          alert("Already Registered")
+          alert("Already Registered");
           // alert(mssg);
-          
-          console.log(err)
+
+          console.log(err);
         });
-
-         
-
-
     } else {
-      
-      alert(`FORM INVALID -\n ${this.state.formErrors.firstname} `)
+      alert(`FORM INVALID -\n ${this.state.formErrors.email} `);
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
     let formErrors = { ...this.state.formErrors };
 
     switch (name) {
-      case "firstname":
-        formErrors.firstname =
-          value.length < 3 ? "minimum 3 characaters required" : "";
-        break;
-      case "lastname":
-        formErrors.lastname =
-          value.length < 3 ? "minimum 3 characaters required" : "";
-        break;
       case "email":
         formErrors.email = emailRegex.test(value)
           ? ""
@@ -132,39 +108,10 @@ class Register extends Component {
     const { formErrors } = this.state;
 
     return (
-       <>
-         {localStorage.getItem('token') === null ?(  <div className="some">
+      <div className="some">
         <div className="form-wrapper">
-          <h4>Create InterPreter Account </h4>
+          <h1>Login as User</h1>
           <form  noValidate>
-            <div className="firstName">
-              <label htmlFor="firstName">First Name</label>
-              <input
-                className={formErrors.firstname.length > 0 ? "error" : null}
-                placeholder="First Name"
-                type="text"
-                name="firstname"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.firstname.length > 0 && (
-                <span className="errorMessage">{formErrors.firstname}</span>
-              )}
-            </div>
-            <div className="lastName">
-              <label htmlFor="lastName">Last Name</label>
-              <input
-                className={formErrors.lastname.length > 0 ? "error" : null}
-                placeholder="Last Name"
-                type="text"
-                name="lastname"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.lastname.length > 0 && (
-                <span className="errorMessage">{formErrors.lastname}</span>
-              )}
-            </div>
             <div className="email">
               <label htmlFor="email">Email</label>
               <input
@@ -194,18 +141,16 @@ class Register extends Component {
               )}
             </div>
             <div className="createAccount">
-              <button onClick={this.handleSubmit}type="submit">Create Account</button>
-              <button style={{backgroundColor:"white"}} >
-              <NavLink to="/login" style={{textDecoration:"none"}}> Already Have an Account?</NavLink>  
+              <button onClick={this.handleSubmit} type="submit">Login</button>
+              <button style={{backgroundColor:"white"}}>
+          <NavLink to="/regUser" style={{textDecoration:"none"}}> Not Have an Account?</NavLink>     
               </button>
             </div>
           </form>
         </div>
-      </div>) : (<Redirect to='/profile'></Redirect>)}
-
-       </>
+      </div>
     );
   }
 }
 
-export default Register;
+export default LoginUser;

@@ -18,6 +18,12 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Pie from '../Chart/Pie'
 import Box from '@material-ui/core/Box';
+import CommProf from '../UserProfile/CommProf'
+import PersonIcon from '@material-ui/icons/Person';
+import WorkIcon from '@material-ui/icons/Work';
+import PermContactCalendarIcon from '@material-ui/icons/PermContactCalendar';
+import SentimentDissatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
+import DeviceHubIcon from '@material-ui/icons/DeviceHub';
 
 const drawerWidth = 240;
 
@@ -78,23 +84,15 @@ function ResponsiveDrawer(props) {
     <div>
       <div className={classes.toolbar} />
       <Divider />
-      <List>
-        {['Profie', 'Starred', 'Job selected', 'History'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
+      <List style={{color:"#6818F0"}}>
+         <ListItem > <ListItemIcon> <DeviceHubIcon style={{color:"#6818F0"}} /></ListItemIcon > <ListItemText primary= "Profile" /> </ListItem>
+         <ListItem > <ListItemIcon><MenuIcon style={{color:"#6818F0"}} /></ListItemIcon > <ListItemText primary= "All Jobs" /> </ListItem>
+         <ListItem > <ListItemIcon><WorkIcon  style={{color:"#6818F0"}}/></ListItemIcon > <ListItemText primary= "My Jobs" /> </ListItem>
+         <ListItem > <ListItemIcon><PermContactCalendarIcon  style={{color:"#6818F0"}}/></ListItemIcon > <ListItemText primary= "Contact us" /> </ListItem>
+
       </List>
       <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+   
     </div>
   );
 
@@ -103,20 +101,7 @@ function ResponsiveDrawer(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="relative" className={classes.appBar}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-         
-        </Toolbar>
-      </AppBar>
+     
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
@@ -148,12 +133,7 @@ function ResponsiveDrawer(props) {
           </Drawer>
         </Hidden>
       </nav>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-
-        
-            
-      </main>
+    <div><CommProf /></div>
     </div>
   );
 }

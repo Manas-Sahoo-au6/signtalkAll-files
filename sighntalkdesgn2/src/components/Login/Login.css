@@ -7,14 +7,14 @@ medium green: #7EB09B
 light green: #A3C4BC
 */
 
-.wrapper {
+.body {
     height: auto;
     width: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-   background-color: transparent;
+    background-image: linear-gradient(to right,  #745cf9,#4301a6);
    border: transparent;
   margin-top: 2rem;
   margin-left: 33.33%;
@@ -29,6 +29,7 @@ light green: #A3C4BC
     border-radius: 10px;
     box-shadow: 0px 10px 50px #555;
     background-color: #ffffff;
+    background-image: linear-gradient(to right,  #745cf9,#4301a6);
     
   }
   

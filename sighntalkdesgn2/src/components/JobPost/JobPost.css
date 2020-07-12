@@ -1,0 +1,44 @@
+.fillUp {
+    width: 800px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right, #9586ec, #4301a6);
+    
+    border-radius: 3%;
+   
+}
+
+.fillUp h2 {
+    margin-left: 2rem;
+    margin-top: 2rem;
+}
+#modal-content{
+    background-color: transparent;
+    border: none;
+}
+
+@media all and (max-width:800px){
+    #modal-content{
+        background-color: transparent;
+        border: none;
+        width: 100%;
+    };
+  img.bottom-img{
+        margin-top: 5rem;
+        width: 100%;
+        height: 20vh;
+    };
+    #banner{
+        background-image: linear-gradient(to right,  #745cf9,#4301a6);
+        color: white;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        
+       
+    }
+  
+}

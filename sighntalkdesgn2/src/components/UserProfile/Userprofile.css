@@ -1,0 +1,41 @@
+
+#userProfile{
+    margin-top: 1rem;
+}
+.light-font {
+    font-weight: lighter;
+}
+
+.shadow {
+    box-shadow: 0px 0px 1px rgb(235, 235, 235)
+}
+
+.gray {
+    background-color: rgb(235, 235, 235);
+}
+
+.smallFont {
+    font-size: 10px;
+}
+
+.middle {
+    overflow-y: scroll;
+    height: 100vh;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
